@@ -10,7 +10,24 @@
 </head>
 
 <body>
+    <div class="aap-container">
+        <header class="">
+            <button class="back-button">&larr; Voltar</button>
+            <h1 class="title">Compras da semana</h1>
+        </header>
 
+        <section class="add-item-form-section">
+            <form id="addItemForm" class="add-item-form">
+                <input type="text" id="itemInput" placeholder="Adicionar item">
+                <button type="submit">Adicionar Item</button>
+            </form>
+            <div id="alertContainer" class="alert-container" aria-live="polite"></div>
+        </section>
+
+        <section class="item-list-section">
+            <ul id="shoppingList" class="item-list"></ul>
+        </section>
+    </div>
 </body>
 
 </html>
