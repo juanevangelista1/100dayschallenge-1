@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compras da Semana | Lista de Compras</title>
+    <title>Compras da Semana | Quicklist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 
 <body>
-    <div class="aap-container">
+    <div class="app-container">
+        <div class="logo">quicklist</div>
+
         <header class="header">
-            <a href="/">
-                <img src="./assets/logo-svg.svg" alt="Logo">
-            </a>
-        </header>
-        <section class="title-section">
-            <button class="back-button">&larr; Voltar</button>
+            <button class="back-button" aria-label="Voltar para a página anterior">
+                &larr; Voltar
+            </button>
             <h1 class="title">Compras da semana</h1>
-        </section>
+        </header>
 
         <section class="add-item-form-section">
             <form id="addItemForm" class="add-item-form">
-                <input type="text" id="itemInput" placeholder="Adicionar item">
-                <button type="submit">Adicionar Item</button>
+                <input type="text" id="itemInput" class="item-input" placeholder="Adicione um novo item" required
+                    aria-label="Adicionar novo item à lista" maxlength="100">
+                <button type="submit" class="add-item-button">
+                    Adicionar item
+                </button>
             </form>
-            <div id="alertContainer" class="alert-container" aria-live="polite"></div>
         </section>
 
-        <section class="item-list-section">
-            <ul id="shoppingList" class="item-list"></ul>
-        </section>
+        <ul id="shoppingList" class="shopping-list">
+        </ul>
     </div>
+
+    <div id="alertContainer" class="alert-container" aria-live="polite"></div>
 </body>
 
 </html>
