@@ -1,24 +1,22 @@
-/* Variáveis CSS para DRY e OCP */
 :root {
-    --color-primary: #e91e63; /* Rosa vibrante (Botão Adicionar e Acentos) */
-    --color-secondary: #9c27b0; /* Roxo (Logo) */
-    --color-background: #f7f7fa; /* Fundo levemente acinzentado */
+    --color-primary: #e91e63;
+    --color-secondary: #9c27b0;
+    --color-background: #f7f7fa;
     --color-card-bg: #fff;
     --color-text: #333;
     --color-text-light: #666;
     --color-border: #ddd;
     --color-completed: #ccc;
-    --color-alert-bg: #dc3545; /* Vermelho escuro para alerta de remoção */
+    --color-alert-bg: #dc3545;
     --color-alert-text: #fff;
     --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --border-radius: 12px;
+    --border-radius-large: 12px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* Usando Poppins se linkada, ou fallback para um sans-serif moderno */
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -33,9 +31,9 @@ body {
 
 .app-container {
     background-color: var(--color-card-bg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-large);
     box-shadow: var(--shadow-heavy);
-    max-width: 500px; /* Ajustado para se parecer com a largura da imagem */
+    max-width: 500px;
     width: 100%;
     padding: 30px;
     display: flex;
@@ -43,7 +41,6 @@ body {
     gap: 25px;
 }
 
-/* --- Logo Quicklist --- */
 .logo {
     font-size: 1.5em;
     font-weight: 700;
@@ -52,7 +49,6 @@ body {
     padding-bottom: 20px;
 }
 
-/* --- Header e Título --- */
 .header {
     display: flex;
     flex-direction: column;
@@ -80,20 +76,19 @@ body {
     color: var(--color-primary);
 }
 
-/* --- Formulário de Adição --- */
 .add-item-form {
     display: flex;
-    gap: 10px;
+    gap: 0;
 }
 
 .item-input {
     flex-grow: 1;
     padding: 12px 15px;
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
     font-size: 1em;
     color: var(--color-text);
-    /* Remove o contorno azul padrão do navegador e adiciona um suave */
+    border-radius: var(--border-radius-large) 0 0 var(--border-radius-large);
+    height: 48px;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -101,30 +96,31 @@ body {
     border-color: var(--color-primary);
     outline: none;
     box-shadow: 0 0 0 1px rgba(233, 30, 99, 0.2);
+    border-right: none;
 }
 
 .add-item-button {
-    background-color: var(--color-primary); /* Em destaque: Rosa Vibrante */
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 12px 20px;
-    border-radius: var(--border-radius);
+    border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0;
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
     transition: background-color 0.2s, transform 0.1s;
     white-space: nowrap;
+    margin-left: -1px;
 }
 
 .add-item-button:hover {
-    background-color: #c2185b; /* Um tom mais escuro de rosa */
+    background-color: #c2185b;
 }
 
 .add-item-button:active {
     transform: scale(0.98);
 }
 
-/* --- Lista de Itens --- */
 .shopping-list {
     list-style: none;
     padding: 0;
@@ -137,9 +133,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 10px; /* Mais padding vertical */
-    border-radius: var(--border-radius);
-    border: 1px solid transparent; /* Adiciona uma borda transparente para manter o espaçamento consistente */
+    padding: 15px 10px;
+    border-radius: var(--border-radius-large);
+    border: 1px solid transparent;
     transition: background-color 0.2s;
 }
 
@@ -150,13 +146,10 @@ body {
     flex-grow: 1;
 }
 
-/* Estilo do Checkbox */
 .item-checkbox {
-    /* Esconde o checkbox nativo e cria um customizado (se necessário), mas para simplicidade, estiliza o nativo */
     width: 20px;
     height: 20px;
-    /* Cor de acento próxima ao rosa/roxo, conforme a imagem */
-    accent-color: var(--color-secondary); 
+    accent-color: var(--color-secondary);
     cursor: pointer;
     border: 1px solid var(--color-border);
     border-radius: 4px;
@@ -171,47 +164,43 @@ body {
     flex-grow: 1;
 }
 
-/* Estilo de item concluído */
 .list-item.completed .item-name {
     text-decoration: line-through;
-    color: var(--color-completed); /* Texto mais claro quando concluído */
+    color: var(--color-completed);
     opacity: 0.8;
 }
 
-/* Botão de Remover (Lixeira) */
 .remove-button {
     background: none;
     border: none;
-    color: var(--color-text-light); /* Cor de lixeira sutil (cinza claro) */
+    color: var(--color-text-light);
     cursor: pointer;
     font-size: 1.1em;
     padding: 5px;
     transition: color 0.2s, transform 0.1s;
     line-height: 1;
-    opacity: 0.6; /* Deixa o ícone sutil */
+    opacity: 0.6;
 }
 
 .remove-button:hover {
-    color: var(--color-primary); /* Fica rosa ao passar o mouse */
+    color: var(--color-primary);
     opacity: 1;
     transform: scale(1.1);
 }
 
-/* --- Mensagens de Alerta/Feedback (Toast) --- */
-/* Estilos ajustados para o visual do alerta de remoção na imagem (vermelho escuro, cantos arredondados) */
 .alert-container {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 450px; /* Ajustado para caber no layout */
+    max-width: 450px;
     z-index: 1000;
 }
 
 .alert {
     padding: 15px 20px;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-large);
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -227,15 +216,13 @@ body {
     transform: translateY(0);
 }
 
-/* Estilo de alerta de Sucesso (Remoção) - Cor da imagem */
 .alert.success {
-    background-color: var(--color-alert-bg); 
+    background-color: var(--color-alert-bg);
     color: var(--color-alert-text);
 }
 
-/* Estilo de alerta de Erro/Aviso (Item vazio) */
 .alert.error {
-    background-color: #fce4ec; /* Fundo rosa bem claro */
+    background-color: #fce4ec;
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
 }
@@ -257,7 +244,6 @@ body {
     line-height: 1;
 }
 
-/* --- Responsividade --- */
 @media (max-width: 550px) {
     body {
         padding: 20px 10px;
@@ -268,6 +254,15 @@ body {
     .add-item-form {
         flex-direction: column;
         gap: 8px;
+    }
+    .item-input, .add-item-button {
+        border-radius: var(--border-radius-large);
+        margin-left: 0;
+        border-right: 1px solid var(--color-border);
+        height: auto;
+    }
+    .item-input:focus {
+        border-right: 1px solid var(--color-primary);
     }
     .alert-container {
         width: calc(100% - 20px);
