@@ -1,140 +1,146 @@
+/* Variáveis CSS para DRY e OCP */
 :root {
-    --color-primary: #8a2be2; 
-    --color-primary-dark: #6a1b9a;
-    --color-background: #f4f7f6;
-    --color-text: #333;
+    --color-primary: #e91e63; /* Rosa vibrante (Botão Adicionar e Acentos) */
+    --color-secondary: #9c27b0; /* Roxo (Logo) */
+    --color-background: #f7f7fa; /* Fundo levemente acinzentado */
     --color-card-bg: #fff;
-    --color-success: #28a745;
-    --color-error: #dc3545;
-    --color-warning-bg: #f8d7da;
-    --color-warning-text: var(--color-error);
-    --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
+    --color-text: #333;
+    --color-text-light: #666;
+    --color-border: #ddd;
+    --color-completed: #ccc;
+    --color-alert-bg: #dc3545; /* Vermelho escuro para alerta de remoção */
+    --color-alert-text: #fff;
+    --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Usando Poppins se linkada, ou fallback para um sans-serif moderno */
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
     background-color: var(--color-background);
     color: var(--color-text);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    padding: 40px 20px;
     min-height: 100vh;
 }
 
 .app-container {
     background-color: var(--color-card-bg);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    padding: 2rem;
+    box-shadow: var(--shadow-heavy);
+    max-width: 500px; /* Ajustado para se parecer com a largura da imagem */
     width: 100%;
-    max-width: 600px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 25px;
 }
 
-.title-section {
+/* --- Logo Quicklist --- */
+.logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--color-secondary);
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* --- Header e Título --- */
+.header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    gap: 15px;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--color-primary-dark);
+    color: var(--color-text);
+    font-size: 1.8em;
+    font-weight: 600;
 }
 
 .back-button {
-    background-color: var(--color-primary-dark);
-    color: var(--color-card-bg);
+    background: none;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
+    color: var(--color-text-light);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9em;
+    padding: 0;
+    text-align: left;
     transition: color 0.2s;
-
-    &:hover {
-        color: var(--color-primary);
-    }
 }
 
+.back-button:hover {
+    color: var(--color-primary);
+}
+
+/* --- Formulário de Adição --- */
 .add-item-form {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
 }
 
 .item-input {
     flex-grow: 1;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 1em;
+    color: var(--color-text);
+    /* Remove o contorno azul padrão do navegador e adiciona um suave */
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .item-input:focus {
     border-color: var(--color-primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+    box-shadow: 0 0 0 1px rgba(233, 30, 99, 0.2);
 }
 
 .add-item-button {
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary); /* Em destaque: Rosa Vibrante */
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 600;
     transition: background-color 0.2s, transform 0.1s;
     white-space: nowrap;
 }
 
 .add-item-button:hover {
-    background-color: var(--color-primary-dark);
+    background-color: #c2185b; /* Um tom mais escuro de rosa */
 }
 
 .add-item-button:active {
     transform: scale(0.98);
 }
 
+/* --- Lista de Itens --- */
 .shopping-list {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--color-card-bg);
-    padding: 15px;
-    border: 1px solid #eee;
+    padding: 15px 10px; /* Mais padding vertical */
     border-radius: var(--border-radius);
-    transition: box-shadow 0.2s, background-color 0.2s;
-}
-
-.list-item:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent; /* Adiciona uma borda transparente para manter o espaçamento consistente */
+    transition: background-color 0.2s;
 }
 
 .item-content {
@@ -144,62 +150,73 @@ body {
     flex-grow: 1;
 }
 
+/* Estilo do Checkbox */
 .item-checkbox {
+    /* Esconde o checkbox nativo e cria um customizado (se necessário), mas para simplicidade, estiliza o nativo */
     width: 20px;
     height: 20px;
-    accent-color: var(--color-primary); 
+    /* Cor de acento próxima ao rosa/roxo, conforme a imagem */
+    accent-color: var(--color-secondary); 
     cursor: pointer;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
 }
 
 .item-name {
-    font-size: 1.1em;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--color-text);
     transition: text-decoration 0.3s, opacity 0.3s;
     line-height: 1.2;
     flex-grow: 1;
 }
 
+/* Estilo de item concluído */
 .list-item.completed .item-name {
     text-decoration: line-through;
-    opacity: 0.6;
+    color: var(--color-completed); /* Texto mais claro quando concluído */
+    opacity: 0.8;
 }
 
+/* Botão de Remover (Lixeira) */
 .remove-button {
     background: none;
     border: none;
-    color: var(--color-error);
+    color: var(--color-text-light); /* Cor de lixeira sutil (cinza claro) */
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding: 5px;
     transition: color 0.2s, transform 0.1s;
-    line-height: 1; 
+    line-height: 1;
+    opacity: 0.6; /* Deixa o ícone sutil */
 }
 
 .remove-button:hover {
-    color: var(--color-primary-dark);
+    color: var(--color-primary); /* Fica rosa ao passar o mouse */
+    opacity: 1;
     transform: scale(1.1);
 }
 
+/* --- Mensagens de Alerta/Feedback (Toast) --- */
+/* Estilos ajustados para o visual do alerta de remoção na imagem (vermelho escuro, cantos arredondados) */
 .alert-container {
-    position: fixed; 
+    position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 450px; /* Ajustado para caber no layout */
     z-index: 1000;
 }
 
 .alert {
-    padding: 12px 20px;
+    padding: 15px 20px;
     border-radius: var(--border-radius);
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-heavy);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -210,15 +227,17 @@ body {
     transform: translateY(0);
 }
 
+/* Estilo de alerta de Sucesso (Remoção) - Cor da imagem */
 .alert.success {
-    background-color: var(--color-success);
-    color: white;
+    background-color: var(--color-alert-bg); 
+    color: var(--color-alert-text);
 }
 
+/* Estilo de alerta de Erro/Aviso (Item vazio) */
 .alert.error {
-    background-color: var(--color-warning-bg);
-    color: var(--color-warning-text);
-    border: 1px solid var(--color-warning-text);
+    background-color: #fce4ec; /* Fundo rosa bem claro */
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 .alert-icon {
@@ -238,45 +257,19 @@ body {
     line-height: 1;
 }
 
-.alert-close:hover {
-    opacity: 0.8;
-}
-
-@media (max-width: 600px) {
+/* --- Responsividade --- */
+@media (max-width: 550px) {
+    body {
+        padding: 20px 10px;
+    }
     .app-container {
         padding: 20px;
-        margin: 0 10px;
     }
-
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .title {
-        font-size: 1.5em;
-    }
-
     .add-item-form {
         flex-direction: column;
+        gap: 8px;
     }
-
-    .add-item-button {
-        width: 100%;
-    }
-
-    .list-item {
-        flex-direction: row; 
-        padding: 12px;
-    }
-
-    .item-content {
-        overflow-wrap: break-word;
-        word-break: break-word;
-    }
-
     .alert-container {
-        width: calc(100% - 40px);
-        max-width: none;
+        width: calc(100% - 20px);
     }
 }
